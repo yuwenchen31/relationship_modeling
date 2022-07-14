@@ -3,7 +3,7 @@
 For more details on NOW corpus & HPC usage, please refer to [this documentation](https://docs.google.com/document/d/1pJ6w0NcR076oyPCq2k2JkogblUKxICGdEs_JHLW4bsA/edit?usp=sharing).
 
 ## Data 
-The following three files can be accessd via [`/RelMod/model_input/`](https://webdata.tudelft.nl/staff-umbrella/RelMod/model_input/) in TU Delft Webdata. 
+The following three files can be accessd via [`/RelMod/model_input/`](https://webdata.tudelft.nl/staff-umbrella/RelMod/model_input/) in TU Delft Webdata, unless otherwise stated.  
 - `large_model_input_gs1.pkl` - 21,98 GB. It can be downloaded [here](https://drive.google.com/file/d/1NVzG8RwEKiyk-dMIFUOicELLEQhMAFh8/view). This link is from LARN paper. 
 - `larn_data_smaller.pt` - 11,45 GB. The same contents as `large_model_input_gs.pkl` but the data type is 32-bit. You can chhose to use this one or the previous one (which might depend on how much memory you have). 
 - `target_word_ix_counter.pk` - 234KB. Counts of each unique word in the corpus. 
