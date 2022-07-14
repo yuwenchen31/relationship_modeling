@@ -7,7 +7,8 @@ The following files are needed in the scripts. They can be accessd via [`/RelMod
 
 ### Used in ARM.py
 - `large_model_input_gs1.pkl` - 21,98 GB. It can be downloaded [here](https://drive.google.com/file/d/1NVzG8RwEKiyk-dMIFUOicELLEQhMAFh8/view). This link is from LARN paper.
-- `larn_data_smaller.pt` - 11,45 GB. The same contents as `large_model_input_gs.pkl` but the data type is 32-bit. You can chhose to use this one or the previous one (which might depend on how much memory you have).  
+- `larn_data_smaller.pt` - 11,45 GB. The same contents as `large_model_input_gs.pkl` but the data type is 32-bit. You can chhose to use this one or the previous one (which might depend on how much memory you have).
+- `embeddings*` - topic embeddings. They are included in this repository under the folder `/ARM/Topic/`.   
 
 ### Used in TemporalTrend.py
 - `target_word_ix_counter.pk` - 234KB. Counts of each unique word in the corpus.  
