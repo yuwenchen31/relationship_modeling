@@ -18,14 +18,15 @@ from LARN_utils import *
 from LARN_modules import *
 
 model_id = 'LARN'
+parent_dir = os.path.abspath('..')
 
-bmap, cmap, wmap, revmap, span_data, span_size, target_pred_ix_set, We = torch.load("/tudelft.net/staff-bulk/ewi/insy/II/yuwenchen/larn_data_smaller.pt")
+bmap, cmap, wmap, revmap, span_data, span_size, target_pred_ix_set, We = torch.load(parent_dir + "/model_input/larn_data_smaller.pt")
 num_chars, num_books, num_traj = len(cmap), len(bmap), len(span_data)
 
 # book, chars, topic_span, topic_mask, topic_month
 # # of topic_span, topic_mask, topic_month = 10
 # TODO 
-larn_input = pd.read_pickle("./LARN-us-ru-4tp.pk")
+larn_input = pd.read_pickle(parent_dir + "/model_input/LARN-us-ru-4tp.pk")
 
 
 descriptor_log = 'descriptors_model_' + str(model_id) + '.log'
