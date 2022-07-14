@@ -7,7 +7,7 @@
 from constants import *
 from utils import *
 from modules import * 
-from ARM_us_ru import *
+from ARM import *
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import csv
@@ -25,10 +25,12 @@ parent_dir = os.path.abspath('..')
 
 # load the LARN data
 # larn_data_smaller.pt is the 32-bit data
-bmap, cmap, wmap, revmap, span_data, span_size, target_pred_ix_set, We = torch.load(parent_dir + "/larn_data_smaller.pt")
+bmap, cmap, wmap, revmap, span_data, span_size, target_pred_ix_set, We = torch.load(parent_dir + "/model_input/larn_data_smaller.pt")
 
 # Get us-ru
 books, chars, all_spans, all_masks, all_months, all_texts = span_data[5]
+
+Topicnr = [0,1,2,3]
 
 # ===========================================
 # Descriptor generation per topic 
@@ -36,13 +38,13 @@ books, chars, all_spans, all_masks, all_months, all_texts = span_data[5]
 for tpnr in Topicnr: 
     
     print(f"The descriptors for Topic{tpnr} is \n")
-    descriptor_log = parent_dir + '/ARM/outputs/descriptors_model_' + model_name + str(tpnr) + '.log'
-    model_object_file_name = parent_dir + f"/ARM/outputs/trained-model-ARM-U.S.-Russia-topic{tpnr}.pt"
+    descriptor_log = 'descriptors_model_' + model_name + str(tpnr) + '.log'
+    model_object_file_name = parent_dir + f"/model_input/trained-model-ARM-U.S.-Russia-topic{tpnr}.pt"
     model = torch.load(model_object_file_name, map_location=torch.device('cpu'))
 
     target_word_ix_set = set()
     # target_word_ix_counter shows the counts of predicates 
-    target_word_ix_counter = pd.read_pickle(parent_dir + "/target_word_ix_counter.pk")
+    target_word_ix_counter = pd.read_pickle(parent_dir + "/model_input/target_word_ix_counter.pk")
 
     # ge the most common verb/predicate & add into the set 
     for wix, _ in target_word_ix_counter.most_common()[:500]: # can also do without this 500 top word limit
@@ -92,7 +94,7 @@ for tpnr in Topicnr:
 
 # ===========================================
 # Generate topic list 
-topic = pd.read_pickle(parent_dir + "/Topic/info-us-ru.pk")
+topic = pd.read_pickle(parent_dir + "/ARM/Topic/info-us-ru.pk")
 topic.pop(-1)
 topic_lists = []
 for t in topic.values():
@@ -104,7 +106,7 @@ for t in topic.values():
 # Temporal Trend per topic 
 
 # read topic embs
-topic_embs = pd.read_pickle(parent_dir + "/Topic/embedding-us-ru.pk")
+topic_embs = pd.read_pickle(parent_dir + "/ARM/Topic/embedding-us-ru.pk")
 
 sample_dict = defaultdict(dict)
 desc_dist_dict = dict()
@@ -114,8 +116,8 @@ with torch.no_grad():
     for tpnr in range(4): 
         
         desc_sample_file_name = 'desc_selected_sample_dict_model_' + model_name + str(tpnr) + '.pkl'
-        trajectory_log = parent_dir + '/ARM/outputs/trajectories_model_' + model_name + str(tpnr) + '.log'
-        model_object_file_name = parent_dir + f"/ARM/outputs/trained-model-ARM-U.S.-Russia-topic{tpnr}.pt"
+        trajectory_log =  'trajectories_model_' + model_name + str(tpnr) + '.log'
+        model_object_file_name = parent_dir + f"/model_input/trained-model-ARM-U.S.-Russia-topic{tpnr}.pt"
         
         model = torch.load(model_object_file_name)
         
@@ -311,7 +313,7 @@ with torch.no_grad():
         # normalize the weights - min-max normalization
         desc_share_df['desc_share'] = (desc_share_df['desc_share']-desc_share_df['desc_share'].min())/(desc_share_df['desc_share'].max()-desc_share_df['desc_share'].min())
         
-        plt.figure(figsize=(30,10))
+        plt.figure(figsize=(20,8))
         
 
         # make the color coding systematic - min sentiment score: red, medium: skyblue, max: green
@@ -349,8 +351,7 @@ with torch.no_grad():
         ax.xaxis.set_label_text('')
         ax.yaxis.set_label_text('Descriptor Weight')
         #plt.show()
-        fig.tight_layout()
-        plt.savefig(plot_save_path + f'ARM-TempTrend-{cmap[chars[0]]}-{cmap[chars[1]]}-{tpnr}.png', bbox_inches='tight')
+        plt.savefig(f'ARM-TempTrend-{cmap[chars[0]]}-{cmap[chars[1]]}-{tpnr}.png', bbox_inches='tight')
 
         # We save the weights dataframe for time-series
         desc_share_df.to_pickle(model_save_path + f"ARM-TimeSeries-{cmap[chars[0]]}-{cmap[chars[1]]}-{tpnr}.pk")
