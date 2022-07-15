@@ -4,10 +4,10 @@ import os
 p = os.path.abspath('..')
 
 # ALL DATA (US-RU pair only)
-data_path = p + "/larn_data_smaller.pt"
-topic_emb_path = p + "/Topic/embedding-us-ru.pk"
-model_save_path = "./outputs/"
-plot_save_path = "./plot/"
+data_path = p + "/model_input/larn_data_smaller.pt"
+topic_emb_path = p + "/ARM/Topic/embedding-us-ru.pk"
+model_save_path = p + "/model_input/"
+
 
 
 # PARTIAL DATA (for testing purpose)
