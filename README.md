@@ -8,10 +8,8 @@ The following three files can be accessd via [`/RelMod/model_input/`](https://we
 - `larn_data_smaller.pt` - 11,45 GB. The same contents as `large_model_input_gs.pkl` but the data type is 32-bit. You can chhose to use this one or the previous one (which might depend on how much memory you have). 
 - `target_word_ix_counter.pk` - 234 KB. Counts of each unique word in the corpus. 
 - `LARN-us-ru-4tp.pk` - 719,1 MB. Topic-related articles that are used as input in `LARN.py`.
-
-The following two files are included in this github repository:
-- `embeddings*` - topic embeddings. They are included in this repository under the folder `/ARM/Topic/`.   
-- `trained-model*` - outputs from ARM model.  
+- `trained-model*` - outputs from ARM model. 
+ 
 
 
 ## Command Line Arguments 
