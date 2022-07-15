@@ -35,10 +35,10 @@ python TemporalTrend.py
   - `plot/` - temporal plots for 4 topics for US-RU that are created by `TemporalTrend.py`
   - `TopicEmbedding.ipynb` - the script used to create `info*`, `prob*` and `embeddings*`. 
   - `ARM.py` - trains the model.    
-  - `TemporalTrend.py` - produces temporal trend per topic. The output plots are in `plot/` in this github repository.
-  - `constants.py` - indicates the constants that are used in other scripts. You can change the data directories here.
+  - `TemporalTrend.py` - produces temporal trend per topic. The output plots are in the `plot/` folder in this github repository.
+  - `constants.py` - indicates the constants that are used in other scripts. You can change the input data directories here.
   - `modules.py` - contains modules of ARM. 
-  - `preprocessing.py`- is supposed to preprocess the raw textual data from May 2019 to April 2022 (which can be downloaded on TU Delft Webdata.) But I have not yet tried this script yet. This scrips is also from LARN paper. 
+  - `preprocessing.py`- is supposed to preprocess the raw textual data from May 2019 to April 2022 (which can be downloaded from TU Delft Webdata.) But I have not yet tried this script yet. This script is also from LARN paper. 
   - `utils.py` - contains some common functions. 
 - `LARN-all-data/` contains the LARN model which can be run with all data (i.e., the original model from the paper.) 
 - `LARN/`contains the LARN model which can be run with topic-related articles. 
@@ -46,6 +46,7 @@ python TemporalTrend.py
   
 
 ## ARM model structure
+
 <p align="center">
 <img src="https://github.com/yuwenchen31/PhD-project/blob/master/plot/model-struture.jpg" width="600">
 </p>
