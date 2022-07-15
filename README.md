@@ -48,4 +48,6 @@ python TemporalTrend.py
   
 
 ## ARM model structure
-<img src="https://github.com/yuwenchen31/PhD-project/blob/master/plot/model-struture.jpg" width="100")
+<p align="center">
+<img src="https://github.com/yuwenchen31/PhD-project/blob/master/plot/model-struture.jpg" width="600">
+</p>
